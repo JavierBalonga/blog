@@ -5,7 +5,6 @@ export default async function Home() {
   return (
     <>
       <Hero />
-      {/* @ts-expect-error Server Component */}
       <Posts />
     </>
   );
