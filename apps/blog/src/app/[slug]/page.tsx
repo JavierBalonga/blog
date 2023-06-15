@@ -1,6 +1,5 @@
 import Markdown from "@/components/abstract/Markdown";
-import getPosts from "@/controllers/getPosts";
-import { Post } from "@/types";
+import strapiSdk from "@/controllers/strapi-sdk";
 
 interface Props {
   params: { slug: string };
@@ -9,23 +8,23 @@ interface Props {
 
 export default async function PostPage(props: Props) {
   const { slug } = props.params;
-  // TODO ver como cambiar el "http://localhost:3000" para que sea dinamico
-  // y funcione tambien fuera del ambiente local
-  const res = await fetch(`http://localhost:3000/api/posts/${slug}`);
-  const post: Post = await res.json();
+  const postResponse = await strapiSdk.getPost({ slug });
+  const post = postResponse.data.posts?.data[0];
 
   return (
     <section className="flex flex-col gap-8 pb-16">
       <header className="flex flex-col gap-4 py-8">
-        <h1 className="text-6xl">{post.title}</h1>
-        <p className="text-xl">{post.description}</p>
-        {post.date && (
-          <time dateTime={post.date} className="text-lg">
-            {new Date(post.date).toLocaleDateString()}
+        <h1 className="text-6xl">{post?.attributes?.title}</h1>
+        <p className="text-xl">{post?.attributes?.description}</p>
+        {post?.attributes?.publishedAt && (
+          <time dateTime={post?.attributes.publishedAt} className="text-lg">
+            {new Date(post?.attributes.publishedAt).toLocaleDateString()}
           </time>
         )}
       </header>
-      <Markdown>{post.content}</Markdown>
+      {post?.attributes?.content && (
+        <Markdown>{post?.attributes?.content}</Markdown>
+      )}
     </section>
   );
 }
@@ -33,9 +32,11 @@ export default async function PostPage(props: Props) {
 export const dynamicParams = false;
 
 export async function generateStaticParams() {
-  const { posts } = await getPosts({ offset: 0, limit: Infinity });
-  const params = posts.map((post) => ({
-    slug: post.slug,
+  const postsResponse = await strapiSdk.getPosts({
+    offset: 0,
+    limit: 1000, // TODO this should be infinite
+  });
+  return postsResponse.data.posts?.data?.map((post) => ({
+    slug: post.attributes?.slug,
   }));
-  return params;
 }

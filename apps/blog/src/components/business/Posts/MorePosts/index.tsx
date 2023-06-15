@@ -1,7 +1,7 @@
 "use client";
 
-import { PostsResponse } from "@/controllers/getPosts";
 import { useCallback, useState } from "react";
+import { GetPostsResponse } from "../../../../app/api/posts/route";
 import PostCard from "../PostCard";
 
 interface MorePostsProps {
@@ -10,7 +10,7 @@ interface MorePostsProps {
 }
 
 export default function MorePosts({ offset, limit }: MorePostsProps) {
-  const [postsResponse, setPostsResponse] = useState<PostsResponse | null>(
+  const [postsResponse, setPostsResponse] = useState<GetPostsResponse | null>(
     null
   );
 
@@ -20,17 +20,17 @@ export default function MorePosts({ offset, limit }: MorePostsProps) {
     url.searchParams.set("limit", String(limit));
     fetch(url)
       .then((res) => res.json())
-      .then((data: PostsResponse) => setPostsResponse(data));
+      .then((data: GetPostsResponse) => setPostsResponse(data));
   }, []);
 
   return !postsResponse ? (
     <button onClick={handleClick}>Load More</button>
   ) : (
     <>
-      {postsResponse.posts.map((post) => {
-        return <PostCard key={post.slug} post={post} />;
+      {postsResponse.data.map((post) => {
+        return <PostCard key={post.attributes?.slug} post={post} />;
       })}
-      {offset + limit < postsResponse.total && (
+      {offset + limit < postsResponse.meta.pagination.total && (
         <MorePosts offset={offset + limit} limit={limit} />
       )}
     </>

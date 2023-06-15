@@ -36,6 +36,12 @@
       "maxLength": 32,
       "minLength": 3,
       "unique": true
+    },
+    "tags": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::tag.tag",
+      "mappedBy": "posts"
     }
   }
 }

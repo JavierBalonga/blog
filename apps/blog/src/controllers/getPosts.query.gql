@@ -1,0 +1,26 @@
+query getPosts($offset: Int!, $limit: Int!) {
+  posts(pagination: { start: $offset, limit: $limit }) {
+    data {
+      id
+      attributes {
+        slug
+        title
+        description
+        publishedAt
+        tags {
+          data {
+            id
+            attributes {
+              name
+            }
+          }
+        }
+      }
+    }
+    meta {
+      pagination {
+        total
+      }
+    }
+  }
+}

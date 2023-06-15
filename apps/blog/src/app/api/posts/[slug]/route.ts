@@ -1,5 +1,11 @@
-import getPost from "@/controllers/getPost";
+import { GetPostQuery } from "@/controllers/strapi-getSdk";
+import strapiSdk from "@/controllers/strapi-sdk";
 import { NextRequest, NextResponse } from "next/server";
+
+export type GetPostResponse = Exclude<
+  GetPostQuery["posts"],
+  undefined | null
+>["data"][number];
 
 export async function GET(
   _req: NextRequest,
@@ -7,8 +13,10 @@ export async function GET(
 ) {
   try {
     const { slug } = context.params;
-    const post = await getPost({ slug });
-    return NextResponse.json(post);
+    const postResponse = await strapiSdk.getPost({ slug });
+    return NextResponse.json(
+      postResponse.data.posts?.data[0] as GetPostResponse
+    );
   } catch (error) {
     if (!(error instanceof Error)) {
       return NextResponse.json({ error: String(error) }, { status: 500 });
