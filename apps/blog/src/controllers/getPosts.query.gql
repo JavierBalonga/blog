@@ -1,5 +1,5 @@
-query getPosts($offset: Int!, $limit: Int!) {
-  posts(pagination: { start: $offset, limit: $limit }) {
+query getPosts {
+  posts {
     data {
       id
       attributes {

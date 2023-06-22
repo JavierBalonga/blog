@@ -1,38 +1,33 @@
 "use client";
 
-import { useCallback, useState } from "react";
-import { GetPostsResponse } from "../../../../app/api/posts/route";
+import { useMemo, useState } from "react";
+import { GetPostsQuery } from "../../../../controllers/strapi-getSdk";
+import { POSTS_PER_PAGE } from "../constants";
 import PostCard from "../PostCard";
 
 interface MorePostsProps {
-  offset: number;
-  limit: number;
+  posts: Exclude<GetPostsQuery["posts"], undefined | null>["data"];
 }
 
-export default function MorePosts({ offset, limit }: MorePostsProps) {
-  const [postsResponse, setPostsResponse] = useState<GetPostsResponse | null>(
-    null
-  );
+export default function MorePosts({ posts }: MorePostsProps) {
+  const [show, setShow] = useState(false);
 
-  const handleClick = useCallback(() => {
-    const url = new URL("/api/posts", "http://localhost:3000");
-    url.searchParams.set("offset", String(offset));
-    url.searchParams.set("limit", String(limit));
-    fetch(url)
-      .then((res) => res.json())
-      .then((data: GetPostsResponse) => setPostsResponse(data));
-  }, []);
+  const { firstPosts, remainingPosts } = useMemo(() => {
+    const firstPosts = posts.slice(0, POSTS_PER_PAGE);
+    const remainingPosts = posts.slice(POSTS_PER_PAGE);
+    return { firstPosts, remainingPosts };
+  }, [posts]);
 
-  return !postsResponse ? (
-    <button onClick={handleClick}>Load More</button>
+  return !show ? (
+    <button className="p-2 rounded-sm clickable" onClick={() => setShow(true)}>
+      Load More
+    </button>
   ) : (
     <>
-      {postsResponse.data.map((post) => {
-        return <PostCard key={post.attributes?.slug} post={post} />;
-      })}
-      {offset + limit < postsResponse.meta.pagination.total && (
-        <MorePosts offset={offset + limit} limit={limit} />
-      )}
+      {firstPosts.map((post) => (
+        <PostCard key={post.id} post={post} />
+      ))}
+      {Boolean(remainingPosts.length) && <MorePosts posts={remainingPosts} />}
     </>
   );
 }

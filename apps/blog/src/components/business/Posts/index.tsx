@@ -1,23 +1,20 @@
 import strapiSdk from "@/controllers/strapi-sdk";
+import { POSTS_PER_PAGE } from "./constants";
 import MorePosts from "./MorePosts";
 import PostCard from "./PostCard";
 
-const POSTS_PER_PAGE = 2;
-
 export default async function Posts() {
-  const postsResponse = await strapiSdk.getPosts({
-    offset: 0,
-    limit: POSTS_PER_PAGE,
-  });
+  const postsResponse = await strapiSdk.getPosts();
+  const posts = postsResponse.data.posts?.data;
+  const firstPosts = posts?.slice(0, POSTS_PER_PAGE);
+  const remainingPosts = posts?.slice(POSTS_PER_PAGE);
+
   return (
     <section className="flex flex-col gap-8 py-8">
-      {postsResponse.data.posts?.data.map((post) => (
+      {firstPosts?.map((post) => (
         <PostCard key={post.id} post={post} />
       ))}
-      {postsResponse.data.posts?.meta.pagination.total &&
-        postsResponse.data.posts.meta.pagination.total > POSTS_PER_PAGE && (
-          <MorePosts offset={POSTS_PER_PAGE} limit={1} />
-        )}
+      {remainingPosts && <MorePosts posts={remainingPosts} />}
     </section>
   );
 }

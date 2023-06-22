@@ -17,11 +17,18 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={cx(inter.className, "min-h-screen flex flex-col")}>
-        <AppBar />
-        <main className="grow flex flex-col items-center pt-16">
-          <div className="grow w-full max-w-4xl">{children}</div>
-        </main>
+      <body
+        className={cx(
+          inter.className,
+          "min-h-screen flex flex-col items-center bg-black text-teal-50"
+        )}
+      >
+        <div className="grow w-full flex flex-col max-w-7xl sm:px-8">
+          <div className="grow w-full bg-zinc-900 border-x border-zinc-300/20 px-8 lg:px-16">
+            <AppBar />
+            <main className="grow w-full flex flex-col">{children}</main>
+          </div>
+        </div>
       </body>
     </html>
   );

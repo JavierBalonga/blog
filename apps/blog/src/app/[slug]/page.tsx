@@ -1,5 +1,6 @@
 import Markdown from "@/components/abstract/Markdown";
 import strapiSdk from "@/controllers/strapi-sdk";
+import Time from "../../components/abstract/Time";
 
 interface Props {
   params: { slug: string };
@@ -12,15 +13,13 @@ export default async function PostPage(props: Props) {
   const post = postResponse.data.posts?.data[0];
 
   return (
-    <section className="flex flex-col gap-8 pb-16">
-      <header className="flex flex-col gap-4 py-8">
-        <h1 className="text-6xl">{post?.attributes?.title}</h1>
-        <p className="text-xl">{post?.attributes?.description}</p>
-        {post?.attributes?.publishedAt && (
-          <time dateTime={post?.attributes.publishedAt} className="text-lg">
-            {new Date(post?.attributes.publishedAt).toLocaleDateString()}
-          </time>
-        )}
+    <section className="flex flex-col items-center gap-8 py-16">
+      <header className="flex flex-col w-full max-w-2xl gap-6 py-8">
+        <h1 className="text-4xl font-bold tracking-tight text-zinc-100 sm:text-5xl">
+          {post?.attributes?.title}
+        </h1>
+        <p className="text-xl text-zinc-400">{post?.attributes?.description}</p>
+        <Time className="order-first" date={post?.attributes?.publishedAt} />
       </header>
       {post?.attributes?.content && (
         <Markdown>{post?.attributes?.content}</Markdown>
@@ -32,10 +31,7 @@ export default async function PostPage(props: Props) {
 export const dynamicParams = false;
 
 export async function generateStaticParams() {
-  const postsResponse = await strapiSdk.getPosts({
-    offset: 0,
-    limit: 1000, // TODO this should be infinite
-  });
+  const postsResponse = await strapiSdk.getPosts();
   return postsResponse.data.posts?.data?.map((post) => ({
     slug: post.attributes?.slug,
   }));

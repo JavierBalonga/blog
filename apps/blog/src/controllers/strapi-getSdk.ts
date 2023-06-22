@@ -1062,10 +1062,7 @@ export type GetPostQueryVariables = Exact<{
 
 export type GetPostQuery = { __typename?: 'Query', posts?: { __typename?: 'PostEntityResponseCollection', data: Array<{ __typename?: 'PostEntity', id?: string | null, attributes?: { __typename?: 'Post', slug: string, title: string, description: string, publishedAt?: any | null, content: string, tags?: { __typename?: 'TagRelationResponseCollection', data: Array<{ __typename?: 'TagEntity', id?: string | null, attributes?: { __typename?: 'Tag', name: string } | null }> } | null } | null }> } | null };
 
-export type GetPostsQueryVariables = Exact<{
-  offset: Scalars['Int']['input'];
-  limit: Scalars['Int']['input'];
-}>;
+export type GetPostsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type GetPostsQuery = { __typename?: 'Query', posts?: { __typename?: 'PostEntityResponseCollection', data: Array<{ __typename?: 'PostEntity', id?: string | null, attributes?: { __typename?: 'Post', slug: string, title: string, description: string, publishedAt?: any | null, tags?: { __typename?: 'TagRelationResponseCollection', data: Array<{ __typename?: 'TagEntity', id?: string | null, attributes?: { __typename?: 'Tag', name: string } | null }> } | null } | null }>, meta: { __typename?: 'ResponseCollectionMeta', pagination: { __typename?: 'Pagination', total: number } } } | null };
@@ -1096,8 +1093,8 @@ export const GetPostDocument = gql`
 }
     `;
 export const GetPostsDocument = gql`
-    query getPosts($offset: Int!, $limit: Int!) {
-  posts(pagination: {start: $offset, limit: $limit}) {
+    query getPosts {
+  posts {
     data {
       id
       attributes {
@@ -1135,7 +1132,7 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     getPost(variables: GetPostQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<{ data: GetPostQuery; extensions?: any; headers: Dom.Headers; status: number; }> {
         return withWrapper((wrappedRequestHeaders) => client.rawRequest<GetPostQuery>(GetPostDocumentString, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getPost', 'query');
     },
-    getPosts(variables: GetPostsQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<{ data: GetPostsQuery; extensions?: any; headers: Dom.Headers; status: number; }> {
+    getPosts(variables?: GetPostsQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<{ data: GetPostsQuery; extensions?: any; headers: Dom.Headers; status: number; }> {
         return withWrapper((wrappedRequestHeaders) => client.rawRequest<GetPostsQuery>(GetPostsDocumentString, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getPosts', 'query');
     }
   };

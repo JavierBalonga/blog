@@ -10,6 +10,7 @@ const codeStyle = {
     ...vscDarkPlus['pre[class*="language-"]'],
     fontSize: "inherit",
     margin: "0",
+    background: "none",
   },
   'code[class*="language-"]': {
     ...vscDarkPlus['code[class*="language-"]'],

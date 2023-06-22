@@ -37,6 +37,7 @@
     "@graphql-codegen/typescript-graphql-request": "^5.0.0",
     "@graphql-codegen/typescript-operations": "^4.0.0",
     "@ianvs/prettier-plugin-sort-imports": "^4.0.2",
+    "@tailwindcss/typography": "^0.5.9",
     "@types/react-syntax-highlighter": "^15.5.7",
     "eslint-config-prettier": "^8.8.0",
     "prettier": "^2.8.8"

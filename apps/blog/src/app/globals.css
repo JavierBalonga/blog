@@ -3,7 +3,66 @@
 @tailwind utilities;
 
 @layer base {
-  body {
-    @apply bg-slate-900 text-teal-50;
+  /* Scrollbars */
+  * {
+    --scrollbar-width: 4px;
+    --scrollbar-color: #d5d5d5;
+    scrollbar-color: var(--scrollbar-color) transparent;
+    scrollbar-width: thin;
+  }
+  *::-webkit-scrollbar {
+    -webkit-appearance: none;
+  }
+  *::-webkit-scrollbar:vertical {
+    width: var(--scrollbar-width);
+  }
+  *::-webkit-scrollbar-button:increment,
+  *::-webkit-scrollbar-button {
+    display: none;
+  }
+  *::-webkit-scrollbar:horizontal {
+    height: var(--scrollbar-width);
+  }
+  *::-webkit-scrollbar-thumb {
+    cursor: move;
+    border: none;
+    border-radius: calc(var(--scrollbar-width) * 2);
+    background-color: var(--scrollbar-color);
+  }
+  *::-webkit-scrollbar-track {
+    border-radius: var(--scrollbar-width);
+    background: transparent;
+  }
+}
+@layer components {
+  .clickable {
+    position: relative;
+  }
+
+  .clickable  > * {
+    position: relative;
+    z-index: 10;
+  }
+
+  .clickable::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    opacity: 0;
+    transform: scale(0.95);
+    border-radius: inherit;
+    background-color: rgb(39 39 42 / 0.5);
+    transition-property: opacity, transform;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 150ms;
+  }
+
+  .clickable:hover::after {
+    opacity: 1;
+    transform: scale(1);
   }
 }
