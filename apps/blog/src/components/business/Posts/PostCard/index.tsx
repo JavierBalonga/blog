@@ -1,8 +1,8 @@
 "use client";
 
-import ArrowRigthIconIcon from "@/components/abstract/icons/ArrowRigthIcon";
-import { GetPostsQuery } from "@/controllers/strapi-getSdk";
 import Link from "next/link";
+import ArrowRigthIcon from "@/components/abstract/icons/ArrowRigthIcon";
+import { GetPostsQuery } from "@/controllers/strapi-getSdk";
 import Time from "../../../abstract/Time";
 
 export interface PostCardProps {
@@ -32,7 +32,7 @@ export default function PostCard({ post }: PostCardProps) {
           ))}
         </div>
         <p className="text-sm font-medium text-teal-500">
-          Leer mas <ArrowRigthIconIcon className="inline" />
+          Leer mas <ArrowRigthIcon className="inline" />
         </p>
       </article>
     </Link>

@@ -1,13 +1,19 @@
-import AppBar from "@/components/business/AppBar";
-import "./globals.css";
-import { cx } from "class-variance-authority";
+import { Metadata } from "next";
 import { Inter } from "next/font/google";
+import AppBar from "@/components/business/AppBar";
+import AppFooter from "@/components/business/AppFooter";
+import { cx } from "class-variance-authority";
+import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "Metalit0 - Blog",
   description: "A blog about software development and other things.",
+  openGraph: {
+    title: "Metalit0 - Blog",
+    description: "A blog about software development and other things.",
+  },
 };
 
 export default function RootLayout({
@@ -27,6 +33,7 @@ export default function RootLayout({
           <div className="grow w-full bg-zinc-900 border-x border-zinc-300/20 px-8 lg:px-16">
             <AppBar />
             <main className="grow w-full flex flex-col">{children}</main>
+            <AppFooter />
           </div>
         </div>
       </body>

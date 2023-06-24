@@ -10,7 +10,7 @@ export default async function Posts() {
   const remainingPosts = posts?.slice(POSTS_PER_PAGE);
 
   return (
-    <section className="flex flex-col gap-8 py-8">
+    <section className="flex flex-col gap-8 pt-8">
       {firstPosts?.map((post) => (
         <PostCard key={post.id} post={post} />
       ))}

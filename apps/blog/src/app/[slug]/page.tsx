@@ -1,3 +1,4 @@
+import { Metadata } from "next";
 import Markdown from "@/components/abstract/Markdown";
 import strapiSdk from "@/controllers/strapi-sdk";
 import Time from "../../components/abstract/Time";
@@ -13,7 +14,7 @@ export default async function PostPage(props: Props) {
   const post = postResponse.data.posts?.data[0];
 
   return (
-    <section className="flex flex-col items-center gap-16 py-8">
+    <section className="flex flex-col items-center gap-16 pt-8">
       <header className="flex flex-col w-full max-w-2xl gap-6">
         <h1 className="text-4xl font-bold tracking-tight text-zinc-100 sm:text-5xl">
           {post?.attributes?.title}
@@ -35,4 +36,20 @@ export async function generateStaticParams() {
   return postsResponse.data.posts?.data?.map((post) => ({
     slug: post.attributes?.slug,
   }));
+}
+
+export async function generateMetadata(props: Props): Promise<Metadata> {
+  const { slug } = props.params;
+  const postResponse = await strapiSdk.getPost({ slug });
+  const post = postResponse.data.posts?.data[0];
+  const title = `Metalit0 - ${post?.attributes?.title || ""}`;
+  const description = post?.attributes?.description || "";
+  return {
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+    },
+  };
 }

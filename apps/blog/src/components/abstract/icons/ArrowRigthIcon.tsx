@@ -1,6 +1,6 @@
 import React, { SVGAttributes } from "react";
 
-const ArrowRigthIconIcon = (props: SVGAttributes<SVGSVGElement>) => {
+const ArrowRigthIcon = (props: SVGAttributes<SVGSVGElement>) => {
   return (
     <svg
       stroke="currentColor"
@@ -16,4 +16,4 @@ const ArrowRigthIconIcon = (props: SVGAttributes<SVGSVGElement>) => {
   );
 };
 
-export default ArrowRigthIconIcon;
+export default ArrowRigthIcon;
