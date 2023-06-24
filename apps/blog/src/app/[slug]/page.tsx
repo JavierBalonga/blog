@@ -13,8 +13,8 @@ export default async function PostPage(props: Props) {
   const post = postResponse.data.posts?.data[0];
 
   return (
-    <section className="flex flex-col items-center gap-8 py-16">
-      <header className="flex flex-col w-full max-w-2xl gap-6 py-8">
+    <section className="flex flex-col items-center gap-16 py-8">
+      <header className="flex flex-col w-full max-w-2xl gap-6">
         <h1 className="text-4xl font-bold tracking-tight text-zinc-100 sm:text-5xl">
           {post?.attributes?.title}
         </h1>

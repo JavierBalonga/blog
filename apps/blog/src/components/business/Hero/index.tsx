@@ -1,4 +1,3 @@
-import Image from "next/image";
 import GitHubIcon from "../../abstract/icons/GitHubIcon";
 import LinkedInIcon from "../../abstract/icons/LinkedInIcon";
 import TwitchIcon from "../../abstract/icons/TwitchIcon";
@@ -6,13 +5,6 @@ import TwitchIcon from "../../abstract/icons/TwitchIcon";
 const Hero = () => {
   return (
     <section className="flex flex-col gap-8">
-      <Image
-        className="h-16 w-16 rounded-full object-cover bg-zinc-800"
-        alt="Metalit0"
-        src="/avatar.png"
-        width={512}
-        height={512}
-      />
       <div className="grow flex flex-col gap-6">
         <h1 className="text-4xl font-bold tracking-tight text-zinc-100 sm:text-5xl">
           Bienvenido! Soy Metalit0

@@ -1,13 +1,12 @@
-import Link from "next/link";
-import Logo from "../../abstract/Logo";
+import Avatar from "./Avatar";
 
 export default function AppBar() {
   return (
-    <header className="flex flex-row items-center py-4">
+    <header className="flex flex-row items-center py-4 z-50 mb-28">
       <nav className="grow">
-        <Link href="/">
-          <Logo className="text-5xl text-red-700" />
-        </Link>
+        <div className="h-12 w-12">
+          <Avatar />
+        </div>
       </nav>
     </header>
   );
