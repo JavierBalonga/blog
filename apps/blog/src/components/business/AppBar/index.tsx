@@ -1,11 +1,11 @@
-import Avatar from "./Avatar";
+import HeaderAvatar from "./HeaderAvatar";
 
 export default function AppBar() {
   return (
-    <header className="flex flex-row items-center py-4 z-50 mb-28">
+    <header className="flex flex-row items-center py-4 z-50">
       <nav className="grow">
         <div className="h-12 w-12">
-          <Avatar />
+          <HeaderAvatar />
         </div>
       </nav>
     </header>

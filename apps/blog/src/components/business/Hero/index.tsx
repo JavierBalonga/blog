@@ -6,7 +6,7 @@ const Hero = () => {
   return (
     <section className="flex flex-col gap-8">
       <div className="grow flex flex-col gap-6">
-        <h1 className="text-4xl font-bold tracking-tight text-zinc-100 sm:text-5xl">
+        <h1 className="text-4xl font-bold tracking-tight text-zinc-100 sm:text-5xl text-balance">
           Bienvenido! Soy Metalit0
         </h1>
         <p className="text-base text-zinc-400">

@@ -1,9 +1,10 @@
 import { Metadata } from "next";
 import { Inter } from "next/font/google";
 import AppBar from "@/components/business/AppBar";
-import AppFooter from "@/components/business/AppFooter";
 import { cx } from "class-variance-authority";
 import "./globals.css";
+import GoToTopButton from "../components/business/GoToTopButton";
+import { CSSScrollYProvider } from "../providers/CSSScrollYProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -29,13 +30,17 @@ export default function RootLayout({
           "min-h-screen flex flex-col items-center bg-black text-teal-50"
         )}
       >
-        <div className="grow w-full flex flex-col max-w-7xl sm:px-8">
-          <div className="grow w-full bg-zinc-900 border-x border-zinc-300/20 px-8 lg:px-16">
-            <AppBar />
-            <main className="grow w-full flex flex-col">{children}</main>
-            <AppFooter />
+        <CSSScrollYProvider>
+          <div className="grow w-full flex flex-col max-w-7xl sm:px-8">
+            <div className="grow w-full bg-zinc-900 border-x border-zinc-300/20 px-8 lg:px-16">
+              <AppBar />
+              <main className="grow w-full flex flex-col py-28">
+                {children}
+              </main>
+              <GoToTopButton />
+            </div>
           </div>
-        </div>
+        </CSSScrollYProvider>
       </body>
     </html>
   );

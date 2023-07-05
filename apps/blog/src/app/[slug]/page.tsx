@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import Markdown from "@/components/abstract/Markdown";
 import strapiSdk from "@/controllers/strapi-sdk";
+import ProgressBar from "../../components/abstract/ProgressBar";
 import Time from "../../components/abstract/Time";
 
 interface Props {
@@ -25,6 +26,7 @@ export default async function PostPage(props: Props) {
       {post?.attributes?.content && (
         <Markdown>{post?.attributes?.content}</Markdown>
       )}
+      <ProgressBar />
     </section>
   );
 }

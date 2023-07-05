@@ -39,7 +39,7 @@
     position: relative;
   }
 
-  .clickable  > * {
+  .clickable > * {
     position: relative;
     z-index: 10;
   }
@@ -64,5 +64,87 @@
   .clickable:hover::after {
     opacity: 1;
     transform: scale(1);
+  }
+}
+
+@layer utilities {
+  .go-top-button {
+    position: fixed;
+    bottom: theme(space.4);
+    right: theme(space.24);
+    transition-property: theme(transitionProperty.transform),
+      theme(transitionProperty.colors);
+
+    /* if the window scroll is more than the --show-scroll-start var  */
+    /* we sholud have a translate-y of 0px */
+    /* if is less than --show-scroll-start var */
+    /* we sholud have a translate-y of 100px */
+    --show-scroll-start: 200;
+    transform: translate(
+      50%,
+      calc(
+        clamp(0, var(--show-scroll-start) - var(--window-scroll-y), 1) * 100px
+      )
+    );
+  }
+}
+
+@layer utilities {
+  .header-avatar-link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 100%;
+    background-color: transparent;
+    transition-property: theme(transitionProperty.colors);
+    transition-duration: theme(transitionDuration.150);
+    transition-timing-function: theme(transitionTimingFunction.in-out);
+    padding: theme(padding.1);
+
+    --max-size: 76px;
+    --min-size: 42px;
+    transform: translate(0, var(--max-size));
+    --size: clamp(
+      var(--min-size),
+      var(--max-size) - var(--window-scroll-y) * 1px,
+      var(--max-size)
+    );
+    height: var(--size);
+    width: var(--size);
+  }
+
+  .header-avatar-link:hover {
+    background-color: theme(colors.zinc.700);
+  }
+  
+}
+
+
+@layer base {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+
+@layer components {
+  .progress-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 2px;
+    width: 100vw;
+    background-color: transparent;
+  }
+
+  .progress-bar::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: calc(100vw * var(--window-scroll-y) / (var(--body-scroll-height) - var(--window-inner-height)));
+    background-color: theme(colors.teal.500);
+    transform-origin: top left;
   }
 }
