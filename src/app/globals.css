@@ -3,6 +3,13 @@
 @tailwind utilities;
 
 @layer base {
+  :root {
+    --window-inner-height: 100vh;
+    --window-scroll-y: 0;
+    --body-scroll-height: 200vh;
+  }
+
+
   /* Scrollbars */
   * {
     --scrollbar-width: 4px;
@@ -143,7 +150,7 @@
     top: 0;
     left: 0;
     height: 100%;
-    width: calc(100vw * var(--window-scroll-y) / (var(--body-scroll-height) - var(--window-inner-height)));
+    width: calc(100vw * var(--window-scroll-y) / max((var(--body-scroll-height) - var(--window-inner-height)), 1));
     background-color: theme(colors.teal.500);
     transform-origin: top left;
   }
