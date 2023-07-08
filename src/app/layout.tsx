@@ -9,10 +9,10 @@ import GoToTopButton from "../components/business/GoToTopButton";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Metalit0 - Blog",
+  title: "Javier Balonga - Blog",
   description: "A blog about software development and other things.",
   openGraph: {
-    title: "Metalit0 - Blog",
+    title: "Javier Balonga - Blog",
     description: "A blog about software development and other things.",
   },
 };

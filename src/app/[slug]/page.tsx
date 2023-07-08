@@ -41,7 +41,7 @@ export async function generateStaticParams() {
 export async function generateMetadata(props: Props): Promise<Metadata> {
   const { slug } = props.params;
   const post = await getPost({ slug });
-  const title = `Metalit0 - ${post.title || ""}`;
+  const title = `Javier Balonga - ${post.title || ""}`;
   const description = post.description || "";
   return {
     title,

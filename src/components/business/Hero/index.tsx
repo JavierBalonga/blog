@@ -6,9 +6,10 @@ const Hero = () => {
   return (
     <section className="flex flex-col gap-8">
       <div className="grow flex flex-col gap-6">
-        <h1 className="text-4xl font-bold tracking-tight text-zinc-100 sm:text-5xl text-balance">
-          Bienvenido! Soy Metalit0
-        </h1>
+        <h1 className="sr-only">Javier Balonga</h1>
+        <h2 className="text-4xl font-bold tracking-tight text-zinc-100 sm:text-5xl text-balance">
+          Bienvenido! Soy Javier
+        </h2>
         <p className="text-base text-zinc-400">
           Este es mi humilde blog, donde escribo sobre desarrollo de software
         </p>
@@ -37,7 +38,7 @@ const Hero = () => {
             className="text-zinc-400 hover:text-zinc-300 transition p-1"
             aria-label="Follow on Twitch"
             title="Follow on Twitch"
-            href="https://www.twitch.tv/metalit0"
+            href="https://www.twitch.tv/metalitodev"
             target="_blank"
             rel="noopener noreferrer"
           >

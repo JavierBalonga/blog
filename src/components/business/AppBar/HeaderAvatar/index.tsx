@@ -6,7 +6,7 @@ export default function HeaderAvatar() {
     <Link className="header-avatar-link" href="/">
       <Image
         className="h-full w-full rounded-full object-cover bg-zinc-800 m-0"
-        alt="Metalit0"
+        alt="Metalito Dev"
         src="/avatar.png"
         width={76}
         height={76}
