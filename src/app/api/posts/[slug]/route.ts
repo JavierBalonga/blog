@@ -21,9 +21,10 @@ export async function GET(
   }
 }
 
-export async function generateStaticParams() {
-  const { posts } = await getPosts();
-  return posts.map((post) => ({
-    slug: post.slug,
-  }));
-}
+/* This is not working properly, it breaks on build time */
+// export async function generateStaticParams() {
+//   const { posts } = await getPosts();
+//   return posts.map((post) => ({
+//     slug: post.slug,
+//   }));
+// }
