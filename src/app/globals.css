@@ -41,6 +41,7 @@
     background: transparent;
   }
 }
+
 @layer components {
   .clickable {
     position: relative;
@@ -126,13 +127,11 @@
   
 }
 
-
 @layer base {
   .text-balance {
     text-wrap: balance;
   }
 }
-
 
 @layer components {
   .progress-bar {

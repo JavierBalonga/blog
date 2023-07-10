@@ -27,7 +27,7 @@ export default function RootLayout({
       <body
         className={cx(
           inter.className,
-          "min-h-screen flex flex-col items-center bg-black text-teal-50"
+          "!min-h-[100svh] min-h-screen flex flex-col items-center bg-black text-teal-50"
         )}
       >
         <div className="grow w-full flex flex-col max-w-7xl sm:px-8">
