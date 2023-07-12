@@ -104,7 +104,7 @@
     align-items: center;
     border-radius: 100%;
     background-color: transparent;
-    transition-property: theme(transitionProperty.colors);
+    transition-property: background-color, transform, height, width;
     transition-duration: theme(transitionDuration.150);
     transition-timing-function: theme(transitionTimingFunction.in-out);
     padding: theme(padding.1);
