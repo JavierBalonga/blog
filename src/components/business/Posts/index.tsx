@@ -6,15 +6,16 @@ import PostCard from "./PostCard";
 export default async function Posts() {
   const { posts } = await getPosts();
 
-  const firstPosts = posts.slice(0, POSTS_PER_PAGE);
-  const remainingPosts = posts.slice(POSTS_PER_PAGE);
+  const visiblePosts = posts.filter(({ slug }) => !slug.startsWith("_"));
+  const firstPosts = visiblePosts.slice(0, POSTS_PER_PAGE);
+  const remainingPosts = visiblePosts.slice(POSTS_PER_PAGE);
 
   return (
     <section className="flex flex-col gap-8 pt-8">
-      {posts.length === 0 ? (
+      {visiblePosts.length === 0 ? (
         <p className="text-red-400">
           Lo siento, todavía estoy trabajando en mis primeros articulos, espero
-          tenerlos listas pronto.
+          tenerlos listos pronto.
         </p>
       ) : (
         <>
