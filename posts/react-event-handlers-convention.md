@@ -1,7 +1,7 @@
 ---
 title: 'Convención para event handlers en React "onEvent" y "handleEvent"'
 description: 'Deja de pasar props como "setState", "fetchThings" o "runSomething" a tus componentes'
-date: "2023-06-03T01:57:42.473Z"
+date: "2023-07-12T23:00:00.000Z"
 tags:
   - react
   - convención
@@ -13,11 +13,11 @@ Miren este componente **StartButton**:
 import { MouseEvent } from "react";
 
 export interface StartButtonProps {
-  onClick: (e: MouseEvent<HTMLButtonElement>) => void;
+  onStart: (e: MouseEvent<HTMLButtonElement>) => void;
 }
 
-export default function StartButton({ onClick }: StartButtonProps) {
-  return <button onClick={onClick}>Start</button>;
+export default function StartButton({ onStart }: StartButtonProps) {
+  return <button onClick={onStart}>Start</button>;
 }
 
 ```
@@ -82,10 +82,8 @@ Ahora, ¿qué ocurre cuando la lógica que debe ejecutarse al ocurrir el evento 
 ```
 
 Con sólo un par de lineas de codigo, comienza a resultar molesto tener esa lógica dentro del **jsx**, algunos pueden pensar *-son sólo 3 líneas de código-*. Es verdad, son sólo 3 lineas, pero es muy común que con solo 3 líneas de código en un componente grande, ya sea suficiente como para querer abstraer a una función aparte ese codigo para mantener mi **jsx** más limpio.
-De ahí surge la pregunta: **¿Cómo debería llamar a la función que pasaré a través de props?**. Pregunta que siendo sincero, nosotros los programadores no somos las personas más ocurrentes para elegir nombres 🤣
-Por eso es bueno apoyarse en convenciones para facilitarnos la vida y tener un código más intuitivo y mantenible.
-
-Es así como surge el prefijo **handle**:
+De ahí surge la pregunta: **¿Cómo debería llamar a la función que controlara el evento?**.  
+Y así como surge el prefijo **handle** y resulta intuitivo ya que es el **controlador** de nuestro evento:
 
 ```tsx
 // ...
@@ -128,3 +126,7 @@ Estos textos así como el de cualquier libro o documentación sobre desarrollo, 
 Esto debería ser tomado solo como una sugerencia y no como un conocimiento rígido y dogmático.
 
 Y recuerden que el **El mayor reto de un proyecto suele ser el trabajo en equipo**.
+
+#### Agradecimientos:
+
+Muchas [Tomas Mercado](https://www.tomas-mercado.dev/es) siempre ahciendome la segunda 😉
