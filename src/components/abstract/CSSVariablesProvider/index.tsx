@@ -15,11 +15,6 @@ export const CSSVariablesProvider = () => {
 
     const handleResize = () => {
       document.body.style.setProperty(
-        "--body-scroll-height",
-        `${document.body.scrollHeight || 0}`
-      );
-
-      document.body.style.setProperty(
         "--window-inner-height",
         `${window.innerHeight || 0}`
       );
@@ -27,9 +22,20 @@ export const CSSVariablesProvider = () => {
     handleResize();
     window.addEventListener("resize", handleResize);
 
+    const handleBodyResize = () => {
+      document.body.style.setProperty(
+        "--body-scroll-height",
+        `${document.body.scrollHeight || 0}`
+      );
+    };
+    handleBodyResize();
+    const bodyResizeObserver = new ResizeObserver(handleBodyResize);
+    bodyResizeObserver.observe(document.body);
+
     return () => {
       document.removeEventListener("scroll", handleScroll);
       window.removeEventListener("resize", handleResize);
+      bodyResizeObserver.disconnect();
     };
   }, []);
   return <></>;

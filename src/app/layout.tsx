@@ -1,8 +1,8 @@
 import { Metadata } from "next";
 import { Inter } from "next/font/google";
 import AppBar from "@/components/business/AppBar";
-import { cx } from "class-variance-authority";
 import "./globals.css";
+import { twMerge } from "tailwind-merge";
 import { CSSVariablesProvider } from "../components/abstract/CSSVariablesProvider";
 import GoToTopButton from "../components/business/GoToTopButton";
 
@@ -25,7 +25,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={cx(
+        className={twMerge(
           inter.className,
           "!min-h-[100svh] min-h-screen flex flex-col items-center bg-black text-teal-50"
         )}

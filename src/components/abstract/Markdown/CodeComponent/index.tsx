@@ -3,6 +3,7 @@
 import { CodeProps } from "react-markdown/lib/ast-to-react";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
+import { twMerge } from "tailwind-merge";
 
 const codeStyle = {
   ...vscDarkPlus,
@@ -36,7 +37,7 @@ const CodeComponent = ({
       {String(children).replace(/\n$/, "")}
     </SyntaxHighlighter>
   ) : (
-    <code {...props} className={className}>
+    <code {...props} className={twMerge("font-mono", className)}>
       {children}
     </code>
   );

@@ -21,7 +21,7 @@ export default async function Posts() {
           {firstPosts.map((post) => (
             <PostCard key={post.slug} post={post} />
           ))}
-          {remainingPosts && <MorePosts posts={remainingPosts} />}
+          {remainingPosts.length > 0 && <MorePosts posts={remainingPosts} />}
         </>
       )}
     </section>

@@ -1,5 +1,5 @@
-import { cx } from "class-variance-authority";
 import { ComponentProps } from "react";
+import { twMerge } from "tailwind-merge";
 
 export interface TimeProps
   extends Omit<ComponentProps<"time">, "dateTime" | "children"> {
@@ -17,7 +17,7 @@ export default function Time({
 
   return (
     <time
-      className={cx(
+      className={twMerge(
         "text-sm text-zinc-500 border-l-2 border-zinc-500 px-3.5",
         className
       )}
