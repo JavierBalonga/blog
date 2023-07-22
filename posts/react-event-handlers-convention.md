@@ -129,4 +129,4 @@ Y recuerden que el **El mayor reto de un proyecto suele ser el trabajo en equipo
 
 #### Agradecimientos:
 
-Muchas [Tomas Mercado](https://www.tomas-mercado.dev/es) siempre haciéndome la segunda 😉
+Muchas gracias [Tomas Mercado](https://www.tomas-mercado.dev/es) siempre haciéndome la segunda 😉
